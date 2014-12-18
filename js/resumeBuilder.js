@@ -67,6 +67,42 @@ var work = {
   }
 }; //work
 
+var projects = {
+  "project": [
+    {
+      "title": '"Global Mobile Internet Conference" Stage Design',
+      "url": "https://www.facebook.com/media/set/?set=a.559496534124316.1073741834.160565670684073&type=3",
+      "dates worked": "October 2013",
+      "description": "GMIC is Silicon Valley's largest annual mobile conference and expo. October 21 2013, GMIC was held at the Moscone Center in San Francisco. It attracted 10,000+ mobile industry participants, including top executives, entrepreneurs, developers, and investors from over 60 countries",
+      "images": ["images/project-1.jpg", "images/project-2.jpg", "images/project-3.jpg"]
+    }, {
+      "title": '"Global Mobile Internet Conference" Website Design and Development',
+      "url": "http://www.thegmic.com",
+      "dates worked": "March 2013",
+      "description": "Create professional, attractive, and engaging UI/UX presence through GMIC's online communications. Apply best practices for both visual design and technical implementation of pieces such as HTML emails and web pages.",
+      "images": ["images/project2-1.jpg", "images/project2-2.jpg", "images/project2-3.jpg"]
+    }, {
+      "title": '"Sunland Law Firm" Logo Design',
+      "url": "http://www.sunlandlaw.com/",
+      "dates worked": "October 2011",
+      "description": "Sunland has been helping and guiding his clients from start-up stages to raising funds in major capital markets, including some of the leaders in the Technology, Multimedia and Telecommunications sector in China.",
+      "images": ["images/project3.jpg"]
+    }
+  ],
+  "display": function() {
+    for(var i=0; i < projects.project.length; i++) {
+      $('#projects').append(HTMLprojectStart);
+      $('.project-entry').eq(i).append(HTMLprojectTitle.replace('%data%', projects.project[i]['title'])
+                                .replace('#', projects.project[i]['url']))
+                               .append(HTMLprojectDates.replace('%data%', projects.project[i]['dates worked']))
+                               .append(HTMLprojectDescription.replace('%data%', projects.project[i]['description']));
+      for(var j=0; j<projects.project[i]['images'].length; j++) {
+        $('.project-entry').eq(i).append(HTMLprojectImage.replace('%data%', projects.project[i]['images'][j]));
+      }
+    };
+  }
+};
+
 var education = {
   "schools": [
     {
@@ -120,5 +156,11 @@ var education = {
 };// education
 
 work.display();
+projects.display();
 bio.display();
 education.display();
+
+$('#mapDiv').append(googleMap);
+$(function(){
+  initializeMap();
+});
